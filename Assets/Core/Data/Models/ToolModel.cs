@@ -12,9 +12,11 @@ namespace Assets.Core.Data.Models
         public Guid Id { get; set; }
         public Guid MaterialId { get; set; }
         [JsonIgnore]
-        public new float Price { get; set; }
+        public override float Price { get; set; }
         [JsonIgnore]
-        public new float Durability { get; set; }
+        public override float Durability { get; set; }
+        [JsonIgnore]
+        public override float MaxDurability { get; }
 
         public Tool ToValue()
         {

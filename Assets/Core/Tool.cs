@@ -11,7 +11,7 @@ namespace Assets.Core
     {
         public Material Material { get; set; }
         public override float Price { get => Material.Price * Weight * 2; }
-        public float MaxDurability { get => Material.Durability * Weight * 2; }
+        public virtual float MaxDurability { get => Material.Durability * Weight * 2; }
         public string Type { get; set; }
     }
 }

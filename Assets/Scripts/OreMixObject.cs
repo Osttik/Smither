@@ -20,9 +20,11 @@ public class OreMixObject : MonoBehaviour, IInteractable
         _mix = GameObject.Find("Controllers").GetComponent<Manager>().DataReader.OreMixes[_nameTag];
     }
 
-    public void InteractIn(GameObject _)
+    public void InteractIn(GameObject interactor)
     {
-        if (_mix == null) return;
+        if (_mix == null || !interactor.TryGetComponent<IInventoryHolder>(out var holder)) return;
+        var requiredTool = holder.Inventory.Items.FirstOrDefault(i => (i as Tool)?.Type == _mix.RequiredToolType);
+        if (requiredTool == null) return;
 
         var intatiated = Instantiate(_orePiecePrefab, transform.position, transform.rotation);
 

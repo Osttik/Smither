@@ -54,7 +54,7 @@ namespace Assets.Core.Data
                 new() { Id = Guid.NewGuid(), Type = "pickaxe", Weight = 5, MaterialId = materials.First(m => m.NameTag == "iron_material").Id, NameTag = "iron_pickaxe" },
                 new() { Id = Guid.NewGuid(), Type = "shovel", Weight = 3, MaterialId = materials.First(m => m.NameTag == "iron_material").Id, NameTag = "iron_shovel" }
             };
-            Write("tools.json", JsonConvert.SerializeObject(mixes));
+            Write("tools.json", JsonConvert.SerializeObject(tools));
             
 
             var deserialisedMaterials = JsonConvert.DeserializeObject<List<MaterialModel>>(Read("materials.json"));
