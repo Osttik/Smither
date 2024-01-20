@@ -11,7 +11,7 @@ public class PlayerInputControllable : MonoBehaviour
     private PlayerController _playerController;
     private Vector2 _delta = Vector2.zero;
 
-    private ActControll _actControll;
+    private ActControl _actControll;
 
 
     private void Awake()
@@ -26,7 +26,7 @@ public class PlayerInputControllable : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _actControll = GetComponent<ActControll>();
+        _actControll = GetComponent<ActControl>();
     }
 
     private void OnEnable()

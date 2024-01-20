@@ -10,11 +10,12 @@ namespace Assets.Core.Inventory
     {
         public float MaxWeight { get; protected set; } = float.NaN;
         public float Weight { get => Items.Sum(i => i.Weight); }
+        public bool IsInfinity => float.IsNaN(MaxWeight);
         public List<Item> Items { get; protected set; } = new List<Item>();
 
         public bool TryAdd(Item item)
         {
-            if (MaxWeight != float.NaN && Weight + item.Weight > MaxWeight) return false;
+            if (IsFull(item)) return false;
             Items.Add(item);
 
             return true;
@@ -23,6 +24,12 @@ namespace Assets.Core.Inventory
         public bool TryRemove(Item item)
         {
             return Items.Remove(item);
+        }
+
+
+        private bool IsFull(Item item)
+        {
+            return !IsInfinity && Weight + item.Weight > MaxWeight;
         }
     }
 }

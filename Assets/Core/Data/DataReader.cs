@@ -17,7 +17,6 @@ namespace Assets.Core.Data
 
         public void ReadOres() 
         {
-            
             var materials = new List<MaterialModel>() {
                 new() { NameTag="iron_material", Id = Guid.NewGuid(), Price = 10, Durability = 50 },
                 new() { NameTag="rock_material", Id = Guid.NewGuid(), Price = 0.1f, Durability = 1  },

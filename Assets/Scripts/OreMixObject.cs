@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class OreMixObject : MonoBehaviour, IInteractable
+public class OreMixObject : MonoBehaviour//, IInteractable
 {
     [SerializeField]
     private GameObject _orePiecePrefab;
@@ -30,7 +30,7 @@ public class OreMixObject : MonoBehaviour, IInteractable
 
         if (_mix.Weight - 10 < 0)
         {
-            intatiated.GetComponent<ItemObject>().SetItem(_mix);
+            intatiated.GetComponent<ItemObject>().Item = _mix;
 
             Destroy(transform.gameObject);
 
@@ -57,6 +57,6 @@ public class OreMixObject : MonoBehaviour, IInteractable
             NameTag = _mix.NameTag
         };
 
-        intatiated.GetComponent<ItemObject>().SetItem(toDrop);
+        intatiated.GetComponent<ItemObject>().Item = toDrop;
     }
 }

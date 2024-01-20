@@ -7,8 +7,10 @@ using UnityEngine;
 
 namespace Assets.Scripts.Abstraction
 {
-    public interface IInteractConsumer
+    public interface IInteractConsumer { }
+
+    public interface IInteractConsumer<T, R>: IInteractConsumer where T: IInteractable
     {
-        public void Interact(GameObject obj);
+        public void ConsumeInteraction(T target, R result);
     }
 }

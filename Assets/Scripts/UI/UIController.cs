@@ -1,28 +1,24 @@
 using Assets.Scripts.Abstraction;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class UIController : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _inventoryPanel;
+    private InventoryContainer _inventoryContainer;
 
-    private InventoryUIController _inventoryItemsControll;
+    [SerializeField]
+    private TextMeshProUGUI _itemElement;
 
-    private void Start()
-    {
-        _inventoryItemsControll = GetComponent<InventoryUIController>();
-    }
+    [SerializeField]
+    private GameObject _holder;
 
     public void OpenCloseInventory()
     {
-        bool activate = !_inventoryPanel.activeInHierarchy;
-        _inventoryPanel.SetActive(activate);
-
-        if (activate)
-        {
-            _inventoryItemsControll.Reload();
-        }
+        bool activate = !_inventoryContainer.gameObject.activeSelf;
+        _inventoryContainer.gameObject.SetActive(activate);
     }
 }

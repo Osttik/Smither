@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Assets.Scripts.Abstraction
 {
-    public interface IPickable
+    public interface IPickable: IInteractable
     {
         public Item Pick();
     }

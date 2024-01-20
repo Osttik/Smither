@@ -9,6 +9,6 @@ namespace Assets.Scripts.Abstraction
 {
     public interface IInteractable
     {
-        public void InteractIn(GameObject issuer);
+        public GameObject GetGameObject();
     }
 }
