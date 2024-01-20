@@ -10,6 +10,7 @@ namespace Assets.Core.Data
 {
     public class DataReader
     {
+        public event Action OnAfterLoaded;
         public Dictionary<string, Material> Materials { get; set; } = new Dictionary<string, Material>();
         public Dictionary<string, OreMix> OreMixes { get; set; } = new Dictionary<string, OreMix>();
         public Dictionary<string, Ore> Ores { get; set; } = new Dictionary<string, Ore>();
@@ -67,6 +68,8 @@ namespace Assets.Core.Data
 
             var deserialisedTools = JsonConvert.DeserializeObject<List<ToolModel>>(Read("tools.json"));
             Tools = deserialisedTools.Select(m => ById(m.Id, deserialisedTools, deserialisedMaterials)).ToDictionary(m => m.NameTag);
+
+            OnAfterLoaded!.Invoke();
         }
 
         public Material ById(Guid id, List<MaterialModel> models)

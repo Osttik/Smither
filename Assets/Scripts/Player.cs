@@ -7,14 +7,27 @@ using UnityEngine;
 
 public class Player : MonoBehaviour, IInventoryHolder, IPuttable, IActor//, IInteractConsumer<Item>
 {
+    [SerializeField]
+    private Manager _manager;
+
     public Inventory Inventory { get; private set; } = new Inventory();
 
     private void Start()
     {
         var reader = GameObject.Find("Controllers").GetComponent<Manager>().DataReader;
 
-        Inventory.TryAdd(reader.Tools["iron_pickaxe"]);
-        Inventory.TryAdd(reader.Tools["iron_shovel"]);
+        _manager.DataReader.OnAfterLoaded += LoadData;
+    }
+
+    private void OnDestroy()
+    {
+        _manager.DataReader.OnAfterLoaded -= LoadData;
+    }
+
+    public void LoadData()
+    {
+        Inventory.TryAdd(_manager.DataReader.Tools["iron_pickaxe"]);
+        Inventory.TryAdd(_manager.DataReader.Tools["iron_shovel"]);
     }
 
     public bool PutItem(Item item)

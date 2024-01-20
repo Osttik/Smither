@@ -10,12 +10,24 @@ public class OreMixObject : MonoBehaviour//, IInteractable
     [SerializeField]
     private GameObject _orePiecePrefab;
     [SerializeField]
+    private Manager _manager;
+    [SerializeField]
     private string _nameTag = string.Empty;
     public string NameTag { get => _nameTag; set => _nameTag = value; }
 
     private OreMix _mix;
 
-    void Start()
+    private void Start()
+    {
+        _manager.DataReader.OnAfterLoaded += LoadData;
+    }
+
+    private void OnDestroy()
+    {
+        _manager.DataReader.OnAfterLoaded -= LoadData;
+    }
+
+    public void LoadData()
     {
         _mix = GameObject.Find("Controllers").GetComponent<Manager>().DataReader.OreMixes[_nameTag];
     }
